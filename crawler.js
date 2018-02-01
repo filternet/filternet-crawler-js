@@ -61,7 +61,7 @@ function createTask(rank, hostname) {
                 rank,
                 hostname,
                 dns: !dnsResult.filtered && dnsResult.ip === '1.2.3.4',
-                dns_ip: dnsResult.filteret ? dnsResult.ip : '',
+                dns_ip: dnsResult.filtered ? dnsResult.ip : '',
                 http: !httpResult.filtered && httpResult.body === 'OK',
                 http_status: httpResult.status,
                 sni: !sniResult.filtered && sniResult.cn === '1.2.3.4',
