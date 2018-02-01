@@ -10,7 +10,7 @@ class Dns {
                 if (err) return reject(err)
 
                 if (addresses.length === 0 || !addresses[0]) {
-                    return reject(new Error(`Dns result is empty for ${hostname}:`, addresses))
+                    return reject(new Error(`Dns result is empty for ${hostname}`))
                 }
 
                 let address = addresses[0]
