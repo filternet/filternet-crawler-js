@@ -9,6 +9,10 @@ class Dns {
             dns.resolve4(hostname, (err, addresses) => {
                 if (err) return reject(err)
 
+                if (addresses.length === 0 || !addresses[0]) {
+                    return reject(new Error(`Dns result is empty for ${hostname}:`, addresses))
+                }
+
                 let address = addresses[0]
 
                 return resolve({
