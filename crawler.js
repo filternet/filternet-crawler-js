@@ -93,15 +93,18 @@ function createTask(rank, hostname, tries = 0) {
                 return
             }
 
-            queue.pause()
-            console.log('queue is paused:', err);
-
             queue.add(createTask(rank, hostname, tries + 1))
-
-            setTimeout(() => {
-                queue.start()
-                console.log('queue is resumed')
-            }, 5000)
+            console.log(`retry task: ${rank},${hostname}`, err)            
+            
+            if (tries > 5) {
+                queue.pause()
+                console.log('queue is paused:', rank, hostname, err);
+    
+                setTimeout(() => {
+                    queue.start()
+                    console.log('queue is resumed')
+                }, 5000)
+            }
         }
     }
 }

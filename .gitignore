@@ -2,3 +2,4 @@ top-1m*.csv
 .DS_STORE
 node_modules/
 out*.csv
+_out/
