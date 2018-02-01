@@ -49,7 +49,7 @@ lr.on('end', () => {
     clearInterval(interval)
 })
 
-function createTask(rank, hostname) {
+function createTask(rank, hostname, tries = 0) {
     return async () => {
         try {
             const result = await Promise.all([
@@ -76,10 +76,27 @@ function createTask(rank, hostname) {
             console.log(data)
             writer.write(data)
         } catch (err) {
+
+            if (tries > 10) {
+                const data = {
+                    rank,
+                    hostname,
+                    dns: 'unknown',
+                    dns_ip: 'unknown',
+                    http: 'unknown',
+                    http_status: 'unknown',
+                    sni: 'unknown',
+                    sni_error: 'unknown'
+                }
+                console.warn(data)
+                writer.write(data)
+                return
+            }
+
             queue.pause()
             console.log('queue is paused:', err);
 
-            queue.add(createTask(rank, hostname))
+            queue.add(createTask(rank, hostname, tries + 1))
 
             setTimeout(() => {
                 queue.start()
