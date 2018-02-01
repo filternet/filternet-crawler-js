@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "csv-write-stream": "^2.0.0",
+    "dnsd": "^0.9.6",
+    "line-by-line": "^0.1.6",
+    "p-queue": "^2.3.0"
+  }
+}
