@@ -24,6 +24,11 @@ lr.on('line', (line) => {
     const rank = csv[0]
     const hostname = csv[1]
 
+    if (!rank || !hostname) {
+        console.warn(`invalid line ${rank},${hostname}`)
+        return
+    }
+
     queue.add(createTask(rank, hostname))
 
     if (queue.size >= concurrencyPendingLimit) {
