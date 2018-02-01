@@ -17,7 +17,7 @@ node crawler.js sample.csv [concurrency=10] [output=out.csv]
 ### 3. Sort Output 
 
 ```bash
-
+sort -g --field-separator=',' --key=1 out.csv > out-sorted.csv
 ```
 
 ## How can I find a list of domains/websites?
